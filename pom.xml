@@ -4,7 +4,7 @@
 	<groupId>com.spring.mvc</groupId>
 	<artifactId>SpringMvcPagination</artifactId>
 	<packaging>war</packaging>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.3-SNAPSHOT</version>
 	<name>SpringMvcPagination Maven Webapp</name>
 	<url>http://maven.apache.org</url>
 	<dependencies>
@@ -43,8 +43,55 @@
 			<version>3.8.1</version>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>org.hamcrest</groupId>
+			<artifactId>hamcrest-all</artifactId>
+			<version>1.3</version>
+			<scope>test</scope>
+		</dependency>
 
+		<dependency>
+			<groupId>org.jmockit</groupId>
+			<artifactId>jmockit</artifactId>
+			<version>1.8</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.skyscreamer</groupId>
+			<artifactId>jsonassert</artifactId>
+			<version>1.5.0</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>pl.pragmatists</groupId>
+			<artifactId>JUnitParams</artifactId>
+			<version>1.1.0</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.assertj</groupId>
+			<artifactId>assertj-core</artifactId>
+			<version>2.6.0</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>com.github.stefanbirkner</groupId>
+			<artifactId>system-rules</artifactId>
+			<version>1.19.0</version>
+			<scope>test</scope>
+		</dependency>
 	</dependencies>
+	<distributionManagement>
+		<snapshotRepository>
+			<id>deployment</id>
+			<name>maven-snapshots</name>
+			<url>http://192.168.56.102:8081/repository/maven-snapshots/</url>
+		</snapshotRepository>
+	</distributionManagement>
 	<build>
 		<finalName>${project.artifactId}</finalName>
 		<plugins>
@@ -54,7 +101,27 @@
 				<version>1.5.1</version>
 				<executions>
 					<execution>
-						<id>default-deploy</id>
+						<id>deployment</id>
+						<phase>deploy</phase>
+						<goals>
+							<goal>deploy</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<serverId>maven-snapshots</serverId>
+					<nexusUrl>http://192.168.56.102:8081/repository/maven-snapshots/</nexusUrl>
+					<skipStaging>true</skipStaging>
+				</configuration>
+			</plugin>
+			<!--
+			<plugin>
+				<groupId>org.sonatype.plugins</groupId>
+				<artifactId>nexus-staging-maven-plugin</artifactId>
+				<version>1.5.1</version>
+				<executions>
+					<execution>
+						<id>deployment</id>
 						<phase>deploy</phase>
 						<goals>
 							<goal>deploy</goal>
@@ -67,6 +134,7 @@
 					<skipStaging>true</skipStaging>
 				</configuration>
 			</plugin>
+			-->
 			<plugin>
 				<groupId>org.sonarsource.scanner.maven</groupId>
 				<artifactId>sonar-maven-plugin</artifactId>
@@ -172,6 +240,22 @@
 					</archive>
 				</configuration>
 			</plugin>
+
+			<plugin>
+				<artifactId>maven-deploy-plugin</artifactId>
+				<version>2.8.1</version>
+				<executions>
+					<execution>
+						<id>default-deploy</id>
+						<phase>deploy</phase>
+						<goals>
+							<goal>deploy</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
 		</plugins>
+
 	</build>
 </project>
