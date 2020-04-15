@@ -89,7 +89,7 @@
 		<snapshotRepository>
 			<id>deployment</id>
 			<name>maven-snapshots</name>
-			<url>http://192.168.56.102:8081/repository/maven-snapshots/</url>
+			<url>http://192.168.56.103:8081/repository/maven-snapshots/</url>
 		</snapshotRepository>
 	</distributionManagement>
 	<build>
@@ -110,7 +110,7 @@
 				</executions>
 				<configuration>
 					<serverId>maven-snapshots</serverId>
-					<nexusUrl>http://192.168.56.102:8081/repository/maven-snapshots/</nexusUrl>
+					<nexusUrl>http://192.168.56.103:8081/repository/maven-snapshots/</nexusUrl>
 					<skipStaging>true</skipStaging>
 				</configuration>
 			</plugin>
@@ -145,7 +145,7 @@
 				<artifactId>flyway-maven-plugin</artifactId>
 				<version>6.3.3</version>
 				<configuration>
-					<url>jdbc:mysql://192.168.56.102:3306/company</url>
+					<url>jdbc:mysql://192.168.56.103:3306/company</url>
 					<user>root</user>
 					<password>supersecret</password>
 					<schemas>
