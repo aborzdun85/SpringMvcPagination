@@ -7,6 +7,9 @@
 	<version>0.0.4-SNAPSHOT</version>
 	<name>SpringMvcPagination Maven Webapp</name>
 	<url>http://maven.apache.org</url>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
 	<dependencies>
 		<!-- Servlet API Dependency -->
 		<dependency>
